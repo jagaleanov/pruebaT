@@ -16,5 +16,10 @@ class Comment extends Model
         'user_id',
         'content',
     ];
+
+    public function article()
+    {
+        return $this->belongsTo(Article::class);
+    }
 }
 
