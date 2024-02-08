@@ -10,13 +10,19 @@ class Tag extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
-        // 'id',
         'article_id',
         'user_id',
         'content',
     ];
-    
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     public function articles()
     {
         return $this->belongsToMany(Article::class, 'article_tags');

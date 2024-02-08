@@ -10,12 +10,16 @@ class Article extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
-        // 'id',
         'user_id',
         'category_id',
         'title',
         'content',
+    ];
+
+    protected $hidden = [
+        'deleted_at',
     ];
 
     public function user()

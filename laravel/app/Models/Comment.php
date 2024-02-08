@@ -10,11 +10,15 @@ class Comment extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
-        // 'id',
         'article_id',
         'user_id',
         'content',
+    ];
+
+    protected $hidden = [
+        'deleted_at',
     ];
 
     public function article()
