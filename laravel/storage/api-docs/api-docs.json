@@ -1,0 +1,811 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/articles": {
+            "get": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "List all articles",
+                "operationId": "93ded9e31119e6bbb22455c72ef97f19",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Article"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Create a new article",
+                "operationId": "75bdc5f953261e6f34852386c9b522c0",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Article"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Article created"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/articles/{id}": {
+            "get": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Get article by ID",
+                "operationId": "a85697b2464e9aaa3f9980a83edbef88",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of article to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Article"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Article not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Update an existing article",
+                "operationId": "beb39fc2f8d02c16b41438aadbd9ba03",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of article that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Article"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Article updated"
+                    },
+                    "404": {
+                        "description": "Article not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Deletes an article",
+                "operationId": "804276a4147e577744e158b2ce2b58f8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the article to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "404": {
+                        "description": "Article not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "List all categories",
+                "operationId": "ac9c4d978ea4e5b72915ca9728e5b8b1",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Create a new category",
+                "operationId": "cca49a87d9b0ebb9a98ad7c154b71737",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Category"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Category created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get a category by ID",
+                "operationId": "09767bb2e47dde77dd1e2591428b0ae1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the category to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Update an existing category",
+                "operationId": "7dcf71887e585de7f881e9eb98d86126",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the category that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Category"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Category updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Delete a category",
+                "operationId": "9b61b65823f4a21f182506b34ddf805c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the category to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/comments": {
+            "get": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "List all comments",
+                "operationId": "2e2597016871fa5dd2bdfccf912edc41",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Comment"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Create a new comment",
+                "operationId": "c6ce2c222c8502aadd6a287105e49307",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Comment"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Comment created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Comment"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/comments/{id}": {
+            "get": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Get comment by ID",
+                "operationId": "dfbfe62d6ea6efe5a6ebc2be766a00e0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of comment to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Comment"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Comment not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Update an existing comment",
+                "operationId": "17f16fb86b3722d33c54e6d165a02c80",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of comment that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Comment"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Comment updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Comment"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Comment not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Delete a comment",
+                "operationId": "b683c30a239aa780ffc7e9b219e90811",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the comment to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content - Successfully deleted"
+                    },
+                    "404": {
+                        "description": "Comment not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/tags": {
+            "get": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "List all tags",
+                "operationId": "65f85cc85cd13d2454b6c88ffff5cc3a",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Tag"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Create a new tag",
+                "operationId": "467bf3e5824fd78f9cdfb70c0ba9b172",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Tag"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tag created"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/tags/{id}": {
+            "get": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Get tag by ID",
+                "operationId": "7dfec953833476181cb9da3ada88ce76",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of tag to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Tag"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tag not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Update an existing tag",
+                "operationId": "ad61cc1b60600b578f626a615aec1e46",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of tag that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Tag"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tag updated"
+                    },
+                    "404": {
+                        "description": "Tag not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Deletes a tag",
+                "operationId": "556f3044efa071c0209e19df24a54e3d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the tag to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Tag successfully deleted"
+                    },
+                    "404": {
+                        "description": "Tag not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Article": {
+                "title": "Article",
+                "required": [
+                    "user_id",
+                    "category_id",
+                    "title",
+                    "content"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Article ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "user_id": {
+                        "description": "User ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "category_id": {
+                        "description": "Category ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "description": "Article title",
+                        "type": "string"
+                    },
+                    "content": {
+                        "description": "Article content",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Category": {
+                "title": "Category",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Category ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "description": "Category title",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Comment": {
+                "title": "Comment",
+                "required": [
+                    "user_id",
+                    "article_id",
+                    "content"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Comment ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "user_id": {
+                        "description": "User ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "article_id": {
+                        "description": "Article ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "content": {
+                        "description": "Comment content",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Tag": {
+                "title": "Tag",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Tag ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "description": "Tag title",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "id": {
+                        "description": "User ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "description": "User name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "User email",
+                        "type": "string",
+                        "format": "email"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Categories",
+            "description": "Operations about categories"
+        },
+        {
+            "name": "Categories",
+            "description": "Operations about categories"
+        },
+        {
+            "name": "Comments",
+            "description": "Operations about comments"
+        },
+        {
+            "name": "Tags",
+            "description": "Operations about tags"
+        }
+    ]
+}
