@@ -174,6 +174,7 @@ class CommentController extends Controller
      *     path="/api/comments/{id}",
      *     tags={"Comments"},
      *     summary="Delete a comment",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

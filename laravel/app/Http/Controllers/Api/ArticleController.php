@@ -7,6 +7,7 @@ use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleCollection;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
@@ -73,7 +74,18 @@ class ArticleController extends Controller
         try {
             $params = $request->all();
             $params['user_id'] = $request->user()->id;
+            $tags = [];
+
             $article = Article::create($params);
+
+            foreach($params['tags'] as $tagId){
+                $tags[] = $tagId;
+            }
+            $tags = Tag::whereIn('id',$tags)->get();
+
+            $article->tags()->attach($tags);
+
+
             // return $article;
             return new ArticleResource($article);
         } catch (\Exception $e) {
@@ -170,6 +182,7 @@ class ArticleController extends Controller
      *     path="/api/articles/{id}",
      *     tags={"Articles"},
      *     summary="Deletes an article",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

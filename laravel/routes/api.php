@@ -38,8 +38,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [ArticleController::class, 'store']);
         Route::put('/{id}', [ArticleController::class, 'update']);
         Route::delete('/{id}', [ArticleController::class, 'destroy']);
-        Route::post('/{id}/tags', [ArticleController::class, 'setTags']);
-        Route::post('/{id}/comments', [ArticleController::class, 'setComments']);
     });
 
     Route::prefix('comments')->group(function ($router) {
@@ -54,20 +52,16 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::prefix('categories')->group(function ($router) {
     Route::get('/', [CategoryController::class, 'index']);
     Route::get('/{id}', [CategoryController::class, 'show']);
-    Route::get('/{id}/articles', [ArticleController::class, 'showByCategory']);
 });
 
 Route::prefix('tags')->group(function ($router) {
     Route::get('/', [TagController::class, 'index']);
     Route::get('/{id}', [TagController::class, 'show']);
-    Route::get('/{id}/articles', [ArticleController::class, 'showByTag']);
 });
 
 Route::prefix('articles')->group(function ($router) {
     Route::get('/', [ArticleController::class, 'index']);
     Route::get('/{id}', [ArticleController::class, 'show']);
-    Route::get('/{id}/tags', [TagController::class, 'showByArticle']);
-    Route::get('/{id}/comments', [CommentController::class, 'showByArticle']);
 });
 
 Route::prefix('comments')->group(function ($router) {

@@ -39,6 +39,6 @@ class Article extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'article_tags');
+        return $this->belongsToMany(Tag::class, 'article_tags')->withTimestamps();
     }
 }

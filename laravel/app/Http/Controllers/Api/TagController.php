@@ -168,6 +168,7 @@ class TagController extends Controller
      *     path="/api/tags/{id}",
      *     tags={"Tags"},
      *     summary="Deletes a tag",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

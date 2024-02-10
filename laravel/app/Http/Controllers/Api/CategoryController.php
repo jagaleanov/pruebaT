@@ -171,6 +171,7 @@ class CategoryController extends Controller
      *     path="/api/categories/{id}",
      *     tags={"Categories"},
      *     summary="Delete a category",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

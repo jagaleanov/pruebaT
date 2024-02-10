@@ -20,9 +20,12 @@ class ArticleResource extends JsonResource
             'content' => $this->content,
             'created_at' => $this->created_at,
             'user' => $this->user,
-            'category' => $this->category,
-            'tags' => $this->tags,
-            'comments' => $this->comments,
+            'tags' => new TagCollection($this->tags),
+            'category' => [
+                'id' => $this->category->id,
+                'title' => $this->category->title,
+            ],
+            'comments' => CommentResource::collection($this->comments),
         ];
     }
 }

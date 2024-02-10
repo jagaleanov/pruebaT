@@ -16,13 +16,16 @@ class ArticleCollection extends ResourceCollection
     {
         return $this->collection->map(function ($article) {
             return [
-                'id' => $this->id,
-                'title' => $this->title,
-                'content' => $this->content,
-                'created_at' => $this->created_at,
-                'user' => $this->user,
-                'category' => $this->category,
-                'tags' => $this->tags,
+                'id' => $article->id,
+                'title' => $article->title,
+                'content' => $article->content,
+                'created_at' => $article->created_at,
+                'user' => $article->user,
+                'tags' => new TagCollection($article->tags),
+                'category' => [
+                    'id' => $article->category->id,
+                    'title' => $article->category->title,
+                ],
             ];
         })->toArray();
     }
