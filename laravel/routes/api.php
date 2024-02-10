@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,46 +20,60 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
 
+    Route::prefix('categories')->group(function ($router) {
+        Route::post('/', [CategoryController::class, 'store']);
+        Route::put('/{id}', [CategoryController::class, 'update']);
+        Route::delete('/{id}', [CategoryController::class, 'destroy']);
+        Route::post('/{id}/articles', [CategoryController::class, 'setArticles']);
+    });
+
+    Route::prefix('tags')->group(function ($router) {
+        Route::post('/', [TagController::class, 'store']);
+        Route::put('/{id}', [TagController::class, 'update']);
+        Route::delete('/{id}', [TagController::class, 'destroy']);
+        Route::post('/{id}/articles', [CategoryController::class, 'setArticles']);
+    });
+
+    Route::prefix('articles')->group(function ($router) {
+        Route::post('/', [ArticleController::class, 'store']);
+        Route::put('/{id}', [ArticleController::class, 'update']);
+        Route::delete('/{id}', [ArticleController::class, 'destroy']);
+        Route::post('/{id}/tags', [ArticleController::class, 'setTags']);
+        Route::post('/{id}/comments', [ArticleController::class, 'setComments']);
+    });
+
+    Route::prefix('comments')->group(function ($router) {
+        Route::post('/', [CommentController::class, 'store']);
+        Route::put('/{id}', [CommentController::class, 'update']);
+        Route::delete('/{id}', [CommentController::class, 'destroy']);
+    });
+
+    Route::post('logout', [UserController::class, 'logout']);
 });
-Route::get('categories', [CategoryController::class, 'index']);
-Route::post('categories', [CategoryController::class, 'store']);
-Route::get('categories/{id}', [CategoryController::class, 'show']);
-Route::put('categories/{id}', [CategoryController::class, 'update']);
-Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
 
-Route::get('tags', [TagController::class, 'index']);
-Route::post('tags', [TagController::class, 'store']);
-Route::get('tags/{id}', [TagController::class, 'show']);
-Route::put('tags/{id}', [TagController::class, 'update']);
-Route::delete('tags/{id}', [TagController::class, 'destroy']);
+Route::prefix('categories')->group(function ($router) {
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::get('/{id}', [CategoryController::class, 'show']);
+    Route::get('/{id}/articles', [ArticleController::class, 'showByCategory']);
+});
 
-Route::get('articles', [ArticleController::class, 'index']);
-Route::post('articles', [ArticleController::class, 'store']);
-Route::get('articles/{id}', [ArticleController::class, 'show']);
-Route::put('articles/{id}', [ArticleController::class, 'update']);
-Route::delete('articles/{id}', [ArticleController::class, 'destroy']);
+Route::prefix('tags')->group(function ($router) {
+    Route::get('/', [TagController::class, 'index']);
+    Route::get('/{id}', [TagController::class, 'show']);
+    Route::get('/{id}/articles', [ArticleController::class, 'showByTag']);
+});
 
-Route::get('comments', [CommentController::class, 'index']);
-Route::post('comments', [CommentController::class, 'store']);
-Route::get('comments/{id}', [CommentController::class, 'show']);
-Route::put('comments/{id}', [CommentController::class, 'update']);
-Route::delete('comments/{id}', [CommentController::class, 'destroy']);
+Route::prefix('articles')->group(function ($router) {
+    Route::get('/', [ArticleController::class, 'index']);
+    Route::get('/{id}', [ArticleController::class, 'show']);
+    Route::get('/{id}/tags', [TagController::class, 'showByArticle']);
+    Route::get('/{id}/comments', [CommentController::class, 'showByArticle']);
+});
 
-Route::get('categories/{id}/articles', [ArticleController::class, 'showByCategory']);
-Route::post('categories/{id}/articles', [CategoryController::class, 'setArticles']);
+Route::prefix('comments')->group(function ($router) {
+    Route::get('/', [CommentController::class, 'index']);
+    Route::get('/{id}', [CommentController::class, 'show']);
+});
 
-Route::get('tags/{id}/articles', [ArticleController::class, 'showByTag']);
-Route::post('tags/{id}/articles', [CategoryController::class, 'setArticles']);
-
-Route::get('articles/{id}/tags', [TagController::class, 'showByArticle']);
-Route::post('articles/{id}/tags', [ArticleController::class, 'setTags']);
-
-Route::get('articles/{id}/comments', [CommentController::class, 'showByArticle']);
-Route::post('articles/{id}/comments', [ArticleController::class, 'setComments']);
-
-
-
-
-
-
-
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
