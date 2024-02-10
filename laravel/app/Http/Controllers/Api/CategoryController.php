@@ -43,7 +43,7 @@ class CategoryController extends Controller
         try {
             $categories = Category::all();
             // return $categories;
-            return CategoryCollection::collection($categories);
+            return new CategoryCollection($categories);
         } catch (\Exception $e) {
             Log::error("Error retrieving categories: {$e->getMessage()}");
             return response()->json(['message' => 'Failed to retrieve categories'], Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -104,10 +104,14 @@ class CategoryController extends Controller
      *     )
      * )
      */
-    public function show(Category $category)
+    public function show(string $id)
     {
         try {
-            $category = $category->load('articles');
+            $category = Category::find($id);
+            if (!$category) {
+                return response()->json(['message' => 'Category not found'], Response::HTTP_NOT_FOUND); // 404 Not Found
+            }
+            // return $category;
             return new CategoryResource($category);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to retrieve category'], Response::HTTP_INTERNAL_SERVER_ERROR); // 500 Internal Server Error

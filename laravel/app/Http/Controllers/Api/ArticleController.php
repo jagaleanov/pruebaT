@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleCollection;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use Illuminate\Http\Response;
@@ -41,7 +42,7 @@ class ArticleController extends Controller
         try {
             $articles = Article::all();
             // return $articles;
-            return ArticleResource::collection($articles);
+            return new ArticleCollection($articles);
         } catch (\Exception $e) {
             Log::error("Error retrieving articles: {$e->getMessage()}");
             return response()->json(['message' => 'Failed to retrieve articles'], Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -53,6 +54,7 @@ class ArticleController extends Controller
      *     path="/api/articles",
      *     tags={"Articles"},
      *     summary="Create a new article",
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\JsonContent(ref="#/components/schemas/Article")
      *     ),
@@ -69,7 +71,9 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         try {
-            $article = Article::create($request->all());
+            $params = $request->all();
+            $params['user_id'] = $request->user()->id;
+            $article = Article::create($params);
             // return $article;
             return new ArticleResource($article);
         } catch (\Exception $e) {

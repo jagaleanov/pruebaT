@@ -16,13 +16,13 @@ class ArticleResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'title' => $this->title,
+            'content' => $this->content,
             'created_at' => $this->created_at,
             'user' => $this->user,
             'category' => $this->category,
             'tags' => $this->tags,
             'comments' => $this->comments,
-            'title' => $this->title,
-            'content' => $this->content,
         ];
     }
 }

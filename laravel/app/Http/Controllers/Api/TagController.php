@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TagRequest;
+use App\Http\Resources\TagCollection;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use Illuminate\Http\Response;
@@ -41,10 +42,10 @@ class TagController extends Controller
         try {
             $tags = Tag::all();
             // return $tags;
-            return TagResource::collection($tags);
+            return new TagCollection($tags);
         } catch (\Exception $e) {
-            Log::error("Error retrieving articles: {$e->getMessage()}");
-            return response()->json(['message' => 'Failed to retrieve articles'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            Log::error("Error retrieving tags: {$e->getMessage()}");
+            return response()->json(['message' => 'Failed to retrieve tags'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

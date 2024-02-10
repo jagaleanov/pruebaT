@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CategoryCollection extends ResourceCollection
+class TagCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,10 +14,10 @@ class CategoryCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return $this->collection->map(function ($category) {
+        return $this->collection->map(function ($tag) {
             return [
-                'id' => $category->id,
-                'title' => $category->title,
+                'id' => $tag->id,
+                'title' => $tag->title,
             ];
         })->toArray();
     }

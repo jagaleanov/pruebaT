@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
+use App\Http\Resources\CommentCollection;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
 use Illuminate\Http\Response;
@@ -39,12 +40,12 @@ class CommentController extends Controller
     public function index()
     {
         try {
-            $categories = Comment::all();
-            // return $categories;
-            return CommentResource::collection($categories);
+            $comments = Comment::all();
+            // return $comments;
+            return CommentResource::collection($comments);
         } catch (\Exception $e) {
-            Log::error("Error retrieving articles: {$e->getMessage()}");
-            return response()->json(['message' => 'Failed to retrieve articles'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            Log::error("Error retrieving comments: {$e->getMessage()}");
+            return response()->json(['message' => 'Failed to retrieve comments'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -71,7 +72,9 @@ class CommentController extends Controller
     public function store(CommentRequest $request)
     {
         try {
-            $comment = Comment::create($request->all());
+            $params = $request->all();
+            $params['user_id'] = $request->user()->id;
+            $comment = Comment::create($params);
             // return $comment;
             return new CommentResource($comment);
         } catch (\Exception $e) {

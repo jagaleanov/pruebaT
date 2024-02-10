@@ -113,8 +113,7 @@ class UserController extends Controller
      *     @OA\Response(
      *         response=401,
      *         description="No autorizado"
-     *     ),
-     *     security={{ "bearerAuth":{} }}
+     *     )
      * )
      */
     public function logout(Request $request)
