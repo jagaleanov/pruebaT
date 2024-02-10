@@ -54,6 +54,7 @@ class TagController extends Controller
      *     path="/api/tags",
      *     tags={"Tags"},
      *     summary="Create a new tag",
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\JsonContent(ref="#/components/schemas/Tag")
      *     ),
@@ -121,6 +122,7 @@ class TagController extends Controller
      *     path="/api/tags/{id}",
      *     tags={"Tags"},
      *     summary="Update an existing tag",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

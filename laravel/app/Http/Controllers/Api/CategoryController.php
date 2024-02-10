@@ -55,6 +55,7 @@ class CategoryController extends Controller
      *     path="/api/categories",
      *     tags={"Categories"},
      *     summary="Create a new category",
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         @OA\JsonContent(ref="#/components/schemas/Category")
      *     ),
@@ -123,6 +124,7 @@ class CategoryController extends Controller
      *     path="/api/categories/{id}",
      *     tags={"Categories"},
      *     summary="Update an existing category",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

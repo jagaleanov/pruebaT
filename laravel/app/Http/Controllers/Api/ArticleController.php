@@ -124,6 +124,7 @@ class ArticleController extends Controller
      *     path="/api/articles/{id}",
      *     tags={"Articles"},
      *     summary="Update an existing article",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

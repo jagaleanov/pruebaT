@@ -54,6 +54,7 @@ class CommentController extends Controller
      *     path="/api/comments",
      *     tags={"Comments"},
      *     summary="Create a new comment",
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/Comment")
@@ -125,6 +126,7 @@ class CommentController extends Controller
      *     path="/api/comments/{id}",
      *     tags={"Comments"},
      *     summary="Update an existing comment",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
