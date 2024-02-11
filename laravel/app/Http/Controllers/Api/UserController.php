@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -26,13 +27,13 @@ class UserController extends Controller
      *     summary="Register a new user",
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *         @OA\JsonContent(ref="#/components/schemas/UserInput")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
      *         @OA\JsonContent(
-     *             @OA\Property(property="user", type="object", ref="#/components/schemas/User"),
+     *             @OA\Property(property="user", type="object", ref="#/components/schemas/UserResource"),
      *             @OA\Property(property="token", type="string")
      *         )
      *     ),
@@ -50,6 +51,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user = new UserResource($user);
         $token = $user->createToken('userToken')->plainTextToken;
 
         return response()->json(['user' => $user, 'token' => $token]);
@@ -64,13 +66,13 @@ class UserController extends Controller
      *     operationId="loginUser",
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/Login")
+     *         @OA\JsonContent(ref="#/components/schemas/UserLogin")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
      *         @OA\JsonContent(
-     *             @OA\Property(property="user", type="object", ref="#/components/schemas/User"),
+     *             @OA\Property(property="user", type="object", ref="#/components/schemas/UserResource"),
      *             @OA\Property(property="token", type="string")
      *         )
      *     ),
@@ -90,6 +92,7 @@ class UserController extends Controller
             ]);
         }
 
+        $user = new UserResource($user);
         $token = $user->createToken('userToken')->plainTextToken;
 
         return response()->json(['user' => $user, 'token' => $token]);
@@ -118,7 +121,6 @@ class UserController extends Controller
      */
     public function logout(Request $request)
     {
-        // Revoke the token that was used to authenticate the current request...
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'User successfully logged out.']);

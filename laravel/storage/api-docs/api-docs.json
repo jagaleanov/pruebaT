@@ -21,7 +21,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Article"
+                                        "$ref": "#/components/schemas/ArticleCollection"
                                     }
                                 }
                             }
@@ -42,14 +42,21 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Article"
+                                "$ref": "#/components/schemas/ArticleInput"
                             }
                         }
                     }
                 },
                 "responses": {
                     "201": {
-                        "description": "Article created"
+                        "description": "Article created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleResource"
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error"
@@ -87,7 +94,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Article"
+                                    "$ref": "#/components/schemas/ArticleResource"
                                 }
                             }
                         }
@@ -119,14 +126,21 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Article"
+                                "$ref": "#/components/schemas/ArticleInput"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Article updated"
+                        "description": "Article updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Article not found"
@@ -192,7 +206,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Category"
+                                        "$ref": "#/components/schemas/CategoryCollection"
                                     }
                                 }
                             }
@@ -213,7 +227,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Category"
+                                "$ref": "#/components/schemas/CategoryInput"
                             }
                         }
                     }
@@ -224,7 +238,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Category"
+                                    "$ref": "#/components/schemas/CategoryResource"
                                 }
                             }
                         }
@@ -265,7 +279,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Category"
+                                    "$ref": "#/components/schemas/CategoryResource"
                                 }
                             }
                         }
@@ -297,7 +311,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Category"
+                                "$ref": "#/components/schemas/CategoryInput"
                             }
                         }
                     }
@@ -308,7 +322,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Category"
+                                    "$ref": "#/components/schemas/CategoryResource"
                                 }
                             }
                         }
@@ -382,7 +396,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Comment"
+                                        "$ref": "#/components/schemas/CommentResource"
                                     }
                                 }
                             }
@@ -404,7 +418,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Comment"
+                                "$ref": "#/components/schemas/CommentInput"
                             }
                         }
                     }
@@ -415,7 +429,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Comment"
+                                    "$ref": "#/components/schemas/CommentResource"
                                 }
                             }
                         }
@@ -456,7 +470,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Comment"
+                                    "$ref": "#/components/schemas/CommentResource"
                                 }
                             }
                         }
@@ -489,7 +503,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Comment"
+                                "$ref": "#/components/schemas/CommentInput"
                             }
                         }
                     }
@@ -500,7 +514,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Comment"
+                                    "$ref": "#/components/schemas/CommentResource"
                                 }
                             }
                         }
@@ -569,7 +583,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Tag"
+                                        "$ref": "#/components/schemas/TagCollection"
                                     }
                                 }
                             }
@@ -590,14 +604,21 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Tag"
+                                "$ref": "#/components/schemas/TagInput"
                             }
                         }
                     }
                 },
                 "responses": {
                     "201": {
-                        "description": "Tag created"
+                        "description": "Tag created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TagResource"
+                                }
+                            }
+                        }
                     },
                     "500": {
                         "description": "Internal Server Error"
@@ -635,7 +656,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Tag"
+                                    "$ref": "#/components/schemas/TagResource"
                                 }
                             }
                         }
@@ -667,14 +688,21 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Tag"
+                                "$ref": "#/components/schemas/TagInput"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Tag updated"
+                        "description": "Tag updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TagResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Tag not found"
@@ -737,7 +765,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User"
+                                "$ref": "#/components/schemas/UserInput"
                             }
                         }
                     }
@@ -750,7 +778,7 @@
                                 "schema": {
                                     "properties": {
                                         "user": {
-                                            "$ref": "#/components/schemas/User"
+                                            "$ref": "#/components/schemas/UserResource"
                                         },
                                         "token": {
                                             "type": "string"
@@ -780,7 +808,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Login"
+                                "$ref": "#/components/schemas/UserLogin"
                             }
                         }
                     }
@@ -793,7 +821,7 @@
                                 "schema": {
                                     "properties": {
                                         "user": {
-                                            "$ref": "#/components/schemas/User"
+                                            "$ref": "#/components/schemas/UserResource"
                                         },
                                         "token": {
                                             "type": "string"
@@ -849,8 +877,8 @@
     },
     "components": {
         "schemas": {
-            "Article": {
-                "title": "Article",
+            "ArticleInput": {
+                "title": "Article input",
                 "required": [
                     "user_id",
                     "category_id",
@@ -858,16 +886,6 @@
                     "content"
                 ],
                 "properties": {
-                    "id": {
-                        "description": "Article ID",
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "user_id": {
-                        "description": "User ID",
-                        "type": "integer",
-                        "format": "int64"
-                    },
                     "category_id": {
                         "description": "Category ID",
                         "type": "integer",
@@ -880,15 +898,151 @@
                     "content": {
                         "description": "Article content",
                         "type": "string"
+                    },
+                    "tags": {
+                        "description": "Collection ogtags ID",
+                        "type": "array",
+                        "items": {
+                            "description": "Tag ID",
+                            "type": "integer",
+                            "format": "int64"
+                        }
                     }
                 },
                 "type": "object"
             },
-            "Category": {
-                "title": "Category",
+            "ArticleResource": {
+                "title": "Article resource",
+                "properties": {
+                    "id": {
+                        "description": "Article ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "description": "Article title",
+                        "type": "string"
+                    },
+                    "content": {
+                        "description": "Article content",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Creation time of the article",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserResource"
+                    },
+                    "category": {
+                        "description": "Category of the article",
+                        "properties": {
+                            "id": {
+                                "description": "Category ID",
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "title": {
+                                "description": "Category title",
+                                "type": "string"
+                            },
+                            "description": {
+                                "description": "Category description",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "tags": {
+                        "description": "Collection of tags",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TagCollection"
+                        }
+                    },
+                    "comments": {
+                        "description": "Collection of comments",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CommentResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ArticleCollection": {
+                "title": "Article collection",
+                "properties": {
+                    "id": {
+                        "description": "Article ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "description": "Article title",
+                        "type": "string"
+                    },
+                    "content": {
+                        "description": "Article content",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Creation time of the article",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserResource"
+                    },
+                    "category": {
+                        "description": "Category of the article",
+                        "properties": {
+                            "id": {
+                                "description": "Category ID",
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "title": {
+                                "description": "Category title",
+                                "type": "string"
+                            },
+                            "description": {
+                                "description": "Category description",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "tags": {
+                        "description": "Collection ogtags",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TagCollection"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "CategoryInput": {
+                "title": "Category input",
                 "required": [
-                    "title"
+                    "title,description"
                 ],
+                "properties": {
+                    "title": {
+                        "description": "Category title",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Category description",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CategoryResource": {
+                "title": "Category resource",
                 "properties": {
                     "id": {
                         "description": "Category ID",
@@ -898,28 +1052,47 @@
                     "title": {
                         "description": "Category title",
                         "type": "string"
+                    },
+                    "description": {
+                        "description": "Category description",
+                        "type": "string"
+                    },
+                    "articles": {
+                        "description": "Collection of articles",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ArticleCollection"
+                        }
                     }
                 },
                 "type": "object"
             },
-            "Comment": {
-                "title": "Comment",
+            "CategoryCollection": {
+                "title": "Category collection",
+                "properties": {
+                    "id": {
+                        "description": "Category ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "description": "Category title",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Category description",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentInput": {
+                "title": "Comment input",
                 "required": [
-                    "user_id",
                     "article_id",
                     "content"
                 ],
                 "properties": {
-                    "id": {
-                        "description": "Comment ID",
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "user_id": {
-                        "description": "User ID",
-                        "type": "integer",
-                        "format": "int64"
-                    },
                     "article_id": {
                         "description": "Article ID",
                         "type": "integer",
@@ -932,8 +1105,110 @@
                 },
                 "type": "object"
             },
-            "Login": {
-                "title": "Login",
+            "CommentResource": {
+                "title": "Comment resource",
+                "properties": {
+                    "id": {
+                        "description": "Comment ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "content": {
+                        "description": "Comment content",
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserResource"
+                    }
+                },
+                "type": "object"
+            },
+            "TagInput": {
+                "title": "Tag input",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "description": "Tag title",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "TagResource": {
+                "title": "Tag resource",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Tag ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "description": "Tag title",
+                        "type": "string"
+                    },
+                    "articles": {
+                        "description": "Collection of articles",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ArticleCollection"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "TagCollection": {
+                "title": "Tag collection",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Tag ID",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "title": {
+                        "description": "Tag title",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UserInput": {
+                "title": "User register input",
+                "required": [
+                    "name",
+                    "email",
+                    "password,password_confirm"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "User name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "User email",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "description": "Password",
+                        "type": "string"
+                    },
+                    "password_confirm": {
+                        "description": "Password confirm",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UserLogin": {
+                "title": "User login input",
                 "required": [
                     "email",
                     "password"
@@ -951,26 +1226,8 @@
                 },
                 "type": "object"
             },
-            "Tag": {
-                "title": "Tag",
-                "required": [
-                    "title"
-                ],
-                "properties": {
-                    "id": {
-                        "description": "Tag ID",
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "title": {
-                        "description": "Tag title",
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            },
-            "User": {
-                "title": "User",
+            "UserResource": {
+                "title": "User resource",
                 "required": [
                     "name",
                     "email",
@@ -990,10 +1247,6 @@
                         "description": "User email",
                         "type": "string",
                         "format": "email"
-                    },
-                    "password": {
-                        "description": "Password",
-                        "type": "string"
                     }
                 },
                 "type": "object"

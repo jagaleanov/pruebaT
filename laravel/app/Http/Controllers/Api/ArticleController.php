@@ -29,7 +29,7 @@ class ArticleController extends Controller
      *         description="Successful operation",
      *         @OA\JsonContent(
      *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Article")
+     *             @OA\Items(ref="#/components/schemas/ArticleCollection")
      *         ),
      *     ),
      *     @OA\Response(
@@ -57,11 +57,12 @@ class ArticleController extends Controller
      *     summary="Create a new article",
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
-     *         @OA\JsonContent(ref="#/components/schemas/Article")
+     *         @OA\JsonContent(ref="#/components/schemas/ArticleInput")
      *     ),
      *     @OA\Response(
      *         response=201,
-     *         description="Article created"
+     *         description="Article created",
+     *         @OA\JsonContent(ref="#/components/schemas/ArticleResource")
      *     ),
      *     @OA\Response(
      *         response="500",
@@ -109,7 +110,7 @@ class ArticleController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
-     *         @OA\JsonContent(ref="#/components/schemas/Article"),
+     *         @OA\JsonContent(ref="#/components/schemas/ArticleResource"),
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -145,11 +146,12 @@ class ArticleController extends Controller
      *         @OA\Schema(type="integer", format="int64")
      *     ),
      *     @OA\RequestBody(
-     *         @OA\JsonContent(ref="#/components/schemas/Article")
+     *         @OA\JsonContent(ref="#/components/schemas/ArticleInput")
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Article updated"
+     *         description="Article updated",
+     *         @OA\JsonContent(ref="#/components/schemas/ArticleResource")
      *     ),
      *     @OA\Response(
      *         response=404,

@@ -20,12 +20,13 @@ class ArticleCollection extends ResourceCollection
                 'title' => $article->title,
                 'content' => $article->content,
                 'created_at' => $article->created_at,
-                'user' => $article->user,
-                'tags' => new TagCollection($article->tags),
+                'user' => new UserResource($article->user),
                 'category' => [
                     'id' => $article->category->id,
                     'title' => $article->category->title,
+                    'description' => $article->category->description,
                 ],
+                'tags' => new TagCollection($article->tags),
             ];
         })->toArray();
     }

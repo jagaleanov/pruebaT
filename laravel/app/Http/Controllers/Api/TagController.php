@@ -28,7 +28,7 @@ class TagController extends Controller
      *         description="Successful operation",
      *         @OA\JsonContent(
      *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Tag")
+     *             @OA\Items(ref="#/components/schemas/TagCollection")
      *         ),
      *     ),
      *     @OA\Response(
@@ -56,11 +56,12 @@ class TagController extends Controller
      *     summary="Create a new tag",
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
-     *         @OA\JsonContent(ref="#/components/schemas/Tag")
+     *         @OA\JsonContent(ref="#/components/schemas/TagInput")
      *     ),
      *     @OA\Response(
      *         response=201,
-     *         description="Tag created"
+     *         description="Tag created",
+     *         @OA\JsonContent(ref="#/components/schemas/TagResource")
      *     ),
      *     @OA\Response(
      *         response="500",
@@ -95,7 +96,7 @@ class TagController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
-     *         @OA\JsonContent(ref="#/components/schemas/Tag"),
+     *         @OA\JsonContent(ref="#/components/schemas/TagResource"),
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -131,11 +132,12 @@ class TagController extends Controller
      *         @OA\Schema(type="integer", format="int64")
      *     ),
      *     @OA\RequestBody(
-     *         @OA\JsonContent(ref="#/components/schemas/Tag")
+     *         @OA\JsonContent(ref="#/components/schemas/TagInput")
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Tag updated"
+     *         description="Tag updated",
+     *         @OA\JsonContent(ref="#/components/schemas/TagResource")
      *     ),
      *     @OA\Response(
      *         response=404,

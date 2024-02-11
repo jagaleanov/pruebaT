@@ -28,7 +28,7 @@ class CommentController extends Controller
      *         description="Successful operation",
      *         @OA\JsonContent(
      *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Comment")
+     *             @OA\Items(ref="#/components/schemas/CommentResource")
      *         )
      *     ),
      *     @OA\Response(
@@ -57,12 +57,12 @@ class CommentController extends Controller
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/Comment")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentInput")
      *     ),
      *     @OA\Response(
      *         response=201,
      *         description="Comment created",
-     *         @OA\JsonContent(ref="#/components/schemas/Comment")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentResource")
      *     ),
      *     @OA\Response(
      *         response="500",
@@ -99,7 +99,7 @@ class CommentController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
-     *         @OA\JsonContent(ref="#/components/schemas/Comment")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -136,12 +136,12 @@ class CommentController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/Comment")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentInput")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Comment updated",
-     *         @OA\JsonContent(ref="#/components/schemas/Comment")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentResource")
      *     ),
      *     @OA\Response(
      *         response=404,

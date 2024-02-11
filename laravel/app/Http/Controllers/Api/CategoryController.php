@@ -29,7 +29,7 @@ class CategoryController extends Controller
      *         description="Successful operation",
      *         @OA\JsonContent(
      *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Category")
+     *             @OA\Items(ref="#/components/schemas/CategoryCollection")
      *         )
      *     ),
      *     @OA\Response(
@@ -57,12 +57,12 @@ class CategoryController extends Controller
      *     summary="Create a new category",
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
-     *         @OA\JsonContent(ref="#/components/schemas/Category")
+     *         @OA\JsonContent(ref="#/components/schemas/CategoryInput")
      *     ),
      *     @OA\Response(
      *         response=201,
      *         description="Category created",
-     *         @OA\JsonContent(ref="#/components/schemas/Category")
+     *         @OA\JsonContent(ref="#/components/schemas/CategoryResource")
      *     ),
      *     @OA\Response(
      *         response=500,
@@ -97,7 +97,7 @@ class CategoryController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
-     *         @OA\JsonContent(ref="#/components/schemas/Category")
+     *         @OA\JsonContent(ref="#/components/schemas/CategoryResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -133,12 +133,12 @@ class CategoryController extends Controller
      *         @OA\Schema(type="integer", format="int64")
      *     ),
      *     @OA\RequestBody(
-     *         @OA\JsonContent(ref="#/components/schemas/Category")
+     *         @OA\JsonContent(ref="#/components/schemas/CategoryInput")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Category updated",
-     *         @OA\JsonContent(ref="#/components/schemas/Category")
+     *         @OA\JsonContent(ref="#/components/schemas/CategoryResource")
      *     ),
      *     @OA\Response(
      *         response=404,
