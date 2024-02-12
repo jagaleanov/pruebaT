@@ -66,7 +66,7 @@ Route::prefix('articles')->group(function ($router) {
 });
 
 Route::prefix('comments')->group(function ($router) {
-    // Route::get('/', [CommentController::class, 'index']);
+    Route::get('/', [CommentController::class, 'index']);
     Route::get('/{id}', [CommentController::class, 'show']);
 });
 
