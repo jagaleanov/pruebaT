@@ -12,9 +12,7 @@ class Tag extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'article_id',
-        'user_id',
-        'content',
+        'title',
     ];
 
     protected $hidden = [
