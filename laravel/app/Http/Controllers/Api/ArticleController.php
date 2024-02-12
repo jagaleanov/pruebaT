@@ -79,10 +79,10 @@ class ArticleController extends Controller
 
             $article = Article::create($params);
 
-            foreach($params['tags'] as $tagId){
+            foreach ($params['tags'] as $tagId) {
                 $tags[] = $tagId;
             }
-            $tags = Tag::whereIn('id',$tags)->get();
+            $tags = Tag::whereIn('id', $tags)->get();
 
             $article->tags()->attach($tags);
 
@@ -168,10 +168,22 @@ class ArticleController extends Controller
         try {
             $article = Article::find($id);
             if (!$article) {
-                return response()->json(['message' => 'Article not found'], Response::HTTP_NOT_FOUND); // 404 Not Found
+                return response()->json(['message' => 'Article not found'], Response::HTTP_NOT_FOUND);
             }
             $article->update($request->all());
-            // return $article;
+
+            $article->tags()->detach();
+
+            // Asociar los nuevos tags
+            if ($request->has('tags')) {
+                $tags = [];
+                foreach ($request->get('tags') as $tagId) {
+                    $tags[] = $tagId;
+                }
+                $tags = Tag::whereIn('id', $tags)->get();
+                $article->tags()->attach($tags);
+            }
+
             return new ArticleResource($article);
         } catch (\Exception $e) {
             Log::error("Error updating article: {$e->getMessage()}");
