@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,9 +66,11 @@ Route::prefix('articles')->group(function ($router) {
 });
 
 Route::prefix('comments')->group(function ($router) {
-    Route::get('/', [CommentController::class, 'index']);
+    // Route::get('/', [CommentController::class, 'index']);
     Route::get('/{id}', [CommentController::class, 'show']);
 });
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
+
+Route::post('images', [ImageController::class, 'upload']);

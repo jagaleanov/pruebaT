@@ -1113,6 +1113,11 @@
                         "type": "integer",
                         "format": "int64"
                     },
+                    "created_at": {
+                        "description": "Creation time of the article",
+                        "type": "string",
+                        "format": "date-time"
+                    },
                     "content": {
                         "description": "Comment content",
                         "type": "string"
@@ -1184,7 +1189,7 @@
                 "required": [
                     "name",
                     "email",
-                    "password,password_confirm"
+                    "password,password_confirmation"
                 ],
                 "properties": {
                     "name": {
@@ -1200,7 +1205,7 @@
                         "description": "Password",
                         "type": "string"
                     },
-                    "password_confirm": {
+                    "password_confirmation": {
                         "description": "Password confirm",
                         "type": "string"
                     }

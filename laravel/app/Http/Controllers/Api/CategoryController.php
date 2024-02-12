@@ -157,9 +157,10 @@ class CategoryController extends Controller
             if (!$category) {
                 return response()->json(['message' => 'Category not found'], Response::HTTP_NOT_FOUND); // 404 Not Found
             }
-            $category->update($request->all());
+            ;
+            $category->update($request->only(['title', 'description']));
             // return $category;
-            return new CategoryRequest($category);
+            return new CategoryResource($category);
         } catch (\Exception $e) {
             Log::error("Error updating category: {$e->getMessage()}");
             return response()->json(['message' => 'Failed to update category'], Response::HTTP_INTERNAL_SERVER_ERROR);
