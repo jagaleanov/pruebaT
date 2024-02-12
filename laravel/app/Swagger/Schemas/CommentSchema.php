@@ -19,6 +19,7 @@ namespace App\Swagger\Schemas;
  *     title="Comment resource",
  *     properties={
  *         @OA\Property(property="id", type="integer", format="int64", description="Comment ID"),
+ *         @OA\Property(property="created_at", type="string", format="date-time", description="Creation time of the article"),
  *         @OA\Property(property="content", type="string", description="Comment content"),
  *         @OA\Property(
  *             property="user",

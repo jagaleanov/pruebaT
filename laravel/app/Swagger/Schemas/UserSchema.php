@@ -7,12 +7,12 @@ namespace App\Swagger\Schemas;
  *     schema="UserInput",
  *     type="object",
  *     title="User register input",
- *     required={"name","email","password,password_confirm"},
+ *     required={"name","email","password,password_confirmation"},
  *     properties={
  *         @OA\Property(property="name", type="string", description="User name"),
  *         @OA\Property(property="email", type="string", format="email", description="User email"),
  *         @OA\Property(property="password", type="string", description="Password"),
- *         @OA\Property(property="password_confirm", type="string", description="Password confirm")
+ *         @OA\Property(property="password_confirmation", type="string", description="Password confirm")
  *     }
  * )
  *
