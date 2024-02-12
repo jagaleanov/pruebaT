@@ -18,6 +18,7 @@ class CategoryCollection extends ResourceCollection
             return [
                 'id' => $category->id,
                 'title' => $category->title,
+                'description' => $category->description,
             ];
         })->toArray();
     }
