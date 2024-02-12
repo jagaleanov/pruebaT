@@ -11,6 +11,10 @@ class UserControllerTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
+    /**
+     * Test it creates an tag.
+     * This method tests if the API endpoint can successfully create a new user.
+     */
     public function testRegister()
     {
         $userData = [
@@ -33,6 +37,10 @@ class UserControllerTest extends TestCase
         ]);
     }
 
+    /**
+     * Test it login an user.
+     * This method tests if the API endpoint can successfully login an user.
+     */
     public function testLogin()
     {
         $user = User::factory()->create([
@@ -51,6 +59,10 @@ class UserControllerTest extends TestCase
             ]);
     }
 
+    /**
+     * Test it logout an user.
+     * This method tests if the API endpoint can successfully logout an user.
+     */
     public function testLogout()
     {
         $user = User::factory()->create();

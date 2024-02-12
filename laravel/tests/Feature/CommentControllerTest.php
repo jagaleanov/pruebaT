@@ -17,7 +17,10 @@ class CommentControllerTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    /**
+     * Test it lists all comments.
+     * This method tests if the API endpoint can successfully list all comments.
+     */
     public function it_lists_all_comments()
     {
         $comments = Comment::factory()->count(10)->create();
@@ -42,7 +45,10 @@ class CommentControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it creates a comment.
+     * This method tests if the API endpoint can successfully create a new comment associated with an article.
+     */
     public function it_creates_a_comment()
     {
         $user = User::factory()->create();
@@ -72,7 +78,10 @@ class CommentControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it shows a comment.
+     * This method tests if the API endpoint can successfully retrieve a single comment by ID.
+     */
     public function it_shows_a_comment()
     {
         $comment = Comment::factory()->create();
@@ -92,7 +101,10 @@ class CommentControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it updates a comment.
+     * This method tests if the API endpoint can successfully update an existing comment.
+     */
     public function it_updates_a_comment()
     {
         $user = User::factory()->create();
@@ -121,8 +133,11 @@ class CommentControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_deletes_a_comment()
+    /**
+     * Test it soft deletes a comment.
+     * This method tests if the API endpoint can successfully soft delete a comment, making it inaccessible from normal queries.
+     */
+    public function it_soft_deletes_a_comment()
     {
         $user = User::factory()->create();
         $this->actingAs($user, 'sanctum');

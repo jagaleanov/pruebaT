@@ -16,7 +16,10 @@ class TagControllerTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    /**
+     * Test it lists all tags.
+     * This method tests if the API endpoint can successfully list all tags.
+     */
     public function it_lists_all_tags()
     {
         $tags = Tag::factory()->count(5)->create();
@@ -35,7 +38,10 @@ class TagControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it creates a tag.
+     * This method tests if the API endpoint can successfully create a new tag.
+     */
     public function it_creates_a_tag()
     {
         $user = User::factory()->create();
@@ -57,7 +63,10 @@ class TagControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it shows a tag.
+     * This method tests if the API endpoint can successfully retrieve a single tag by ID.
+     */
     public function it_shows_a_tag()
     {
         $tag = Tag::factory()->create();
@@ -73,7 +82,10 @@ class TagControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it updates a tag.
+     * This method tests if the API endpoint can successfully update an existing tag.
+     */
     public function it_updates_a_tag()
     {
         $user = User::factory()->create();
@@ -101,7 +113,10 @@ class TagControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it soft deletes a tag.
+     * This method tests if the API endpoint can successfully soft delete a tag, making it inaccessible from normal queries.
+     */
     public function it_soft_deletes_a_tag()
     {
         $user = User::factory()->create();

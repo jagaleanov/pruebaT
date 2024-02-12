@@ -16,7 +16,10 @@ class CategoryControllerTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    /**
+     * Test it lists all categories.
+     * This method tests if the API endpoint can successfully list all categories.
+     */
     public function it_lists_all_categories()
     {
         $categories = Category::factory()->count(10)->create();
@@ -36,7 +39,10 @@ class CategoryControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it creates a category.
+     * This method tests if the API endpoint can successfully create a new category.
+     */
     public function it_creates_a_category()
     {
         $user = User::factory()->create();
@@ -60,7 +66,10 @@ class CategoryControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it shows a category.
+     * This method tests if the API endpoint can successfully retrieve a single category by ID.
+     */
     public function it_shows_a_category()
     {
         $category = Category::factory()->create();
@@ -76,7 +85,10 @@ class CategoryControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it updates a category.
+     * This method tests if the API endpoint can successfully update an existing category.
+     */
     public function it_updates_a_category()
     {
         $user = User::factory()->create();
@@ -93,9 +105,9 @@ class CategoryControllerTest extends TestCase
         $response->assertOk();
 
         $this->assertDatabaseHas('categories', [
-                'id' => $category->id,
-                'title' => 'Updated Category Title',
-                'description' => 'Updated Category Description',
+            'id' => $category->id,
+            'title' => 'Updated Category Title',
+            'description' => 'Updated Category Description',
         ]);
 
         $response->assertJson([
@@ -107,7 +119,10 @@ class CategoryControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it soft deletes a category.
+     * This method tests if the API endpoint can successfully soft delete a category, making it inaccessible from normal queries.
+     */
     public function it_soft_deletes_a_category()
     {
         $user = User::factory()->create();

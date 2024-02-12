@@ -18,7 +18,10 @@ class ArticleControllerTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    /**
+     * Test it lists all articles.
+     * This method tests if the API endpoint can successfully list all articles.
+     */
     public function it_lists_all_articles()
     {
         $articles = Article::factory()->count(10)->create();
@@ -49,7 +52,10 @@ class ArticleControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it creates an article.
+     * This method tests if the API endpoint can successfully create a new article.
+     */
     public function it_creates_an_article()
     {
         $user = User::factory()->create();
@@ -93,7 +99,10 @@ class ArticleControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it shows an article.
+     * This method tests if the API endpoint can successfully retrieve a single article by ID.
+     */
     public function it_shows_an_article()
     {
         $user = User::factory()->create();
@@ -132,7 +141,10 @@ class ArticleControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it updates an article.
+     * This method tests if the API endpoint can successfully update an existing article.
+     */
     public function it_updates_an_article()
     {
         $user = User::factory()->create();
@@ -185,7 +197,10 @@ class ArticleControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * Test it soft deletes an article.
+     * This method tests if the API endpoint can successfully soft delete an article, making it inaccessible from normal queries.
+     */
     public function it_soft_deletes_an_article()
     {
         $user = User::factory()->create();
