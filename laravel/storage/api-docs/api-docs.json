@@ -13,6 +13,32 @@
                 ],
                 "summary": "List all articles",
                 "operationId": "93ded9e31119e6bbb22455c72ef97f19",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Some word from the name or body of the article",
+                        "required": false
+                    },
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "description": "Category id",
+                        "required": false
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User id",
+                        "required": false
+                    },
+                    {
+                        "name": "tag_id",
+                        "in": "query",
+                        "description": "Tag id",
+                        "required": false
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -198,6 +224,14 @@
                 ],
                 "summary": "List all categories",
                 "operationId": "ac9c4d978ea4e5b72915ca9728e5b8b1",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Some word from the name of the category",
+                        "required": false
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -388,6 +422,26 @@
                 ],
                 "summary": "List all comments",
                 "operationId": "2e2597016871fa5dd2bdfccf912edc41",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Some word from the body of the comment",
+                        "required": false
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User id",
+                        "required": false
+                    },
+                    {
+                        "name": "article_id",
+                        "in": "query",
+                        "description": "Article id",
+                        "required": false
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -568,6 +622,54 @@
                 ]
             }
         },
+        "/api/images": {
+            "post": {
+                "tags": [
+                    "Images"
+                ],
+                "summary": "Upload an image",
+                "operationId": "uploadImage",
+                "requestBody": {
+                    "description": "Image file to upload",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "description": "Image file",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful upload",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "location": {
+                                            "description": "URL of the uploaded image",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
         "/api/tags": {
             "get": {
                 "tags": [
@@ -575,6 +677,14 @@
                 ],
                 "summary": "List all tags",
                 "operationId": "65f85cc85cd13d2454b6c88ffff5cc3a",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "some word from the name of the tag",
+                        "required": false
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -1252,6 +1362,10 @@
                         "description": "User email",
                         "type": "string",
                         "format": "email"
+                    },
+                    "role": {
+                        "description": "User role",
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -1277,6 +1391,10 @@
         {
             "name": "Comments",
             "description": "Operations about comments"
+        },
+        {
+            "name": "Images",
+            "description": "Upload images"
         },
         {
             "name": "Tags",
