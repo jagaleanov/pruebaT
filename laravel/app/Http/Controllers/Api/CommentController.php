@@ -7,6 +7,7 @@ use App\Http\Requests\CommentRequest;
 use App\Http\Resources\CommentCollection;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
@@ -23,6 +24,24 @@ class CommentController extends Controller
      *     path="/api/comments",
      *     tags={"Comments"},
      *     summary="List all comments",
+     *     @OA\Parameter(
+     *         name="search",
+     *         in="query",
+     *         description="Some word from the body of the comment",
+     *         required=false,
+     *     ),
+     *     @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         description="User id",
+     *         required=false,
+     *     ),
+     *     @OA\Parameter(
+     *         name="article_id",
+     *         in="query",
+     *         description="Article id",
+     *         required=false,
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
@@ -37,15 +56,32 @@ class CommentController extends Controller
      *     )
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $comments = Comment::all();
-            // return $comments;
+            $query = Comment::query();
+
+            if ($request->has('search')) {
+                $search = $request->query('search');
+                $query->where('content', 'like', "%{$search}%");
+            }
+
+            if ($request->has('user_id')) {
+                $userId = $request->query('user_id');
+                $query->where('user_id', $userId);
+            }
+
+            if ($request->has('article_id')) {
+                $articleId = $request->query('article_id');
+                $query->where('article_id', $articleId);
+            }
+
+            $comments = $query->get();
+
             return CommentResource::collection($comments);
         } catch (\Exception $e) {
-            Log::error("Error retrieving comments: {$e->getMessage()}");
-            return response()->json(['message' => 'Failed to retrieve comments'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            Log::error("Error retrieving articles: {$e->getMessage()}");
+            return response()->json(['message' => 'Failed to retrieve articles'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

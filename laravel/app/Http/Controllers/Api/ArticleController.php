@@ -8,6 +8,7 @@ use App\Http\Resources\ArticleCollection;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
@@ -24,6 +25,30 @@ class ArticleController extends Controller
      *     path="/api/articles",
      *     tags={"Articles"},
      *     summary="List all articles",
+     *     @OA\Parameter(
+     *         name="search",
+     *         in="query",
+     *         description="Some word from the name or body of the article",
+     *         required=false,
+     *     ),
+     *     @OA\Parameter(
+     *         name="category_id",
+     *         in="query",
+     *         description="Category id",
+     *         required=false,
+     *     ),
+     *     @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         description="User id",
+     *         required=false,
+     *     ),
+     *     @OA\Parameter(
+     *         name="tag_id",
+     *         in="query",
+     *         description="Tag id",
+     *         required=false,
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
@@ -38,11 +63,37 @@ class ArticleController extends Controller
      *     )
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $articles = Article::all();
-            // return $articles;
+            $query = Article::query();
+
+            if ($request->has('search')) {
+                $search = $request->query('search');
+                $query->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('content', 'like', "%{$search}%");
+                });
+            }
+
+            if ($request->has('category_id')) {
+                $categoryId = $request->query('category_id');
+                $query->where('category_id', $categoryId);
+            }
+
+            if ($request->has('user_id')) {
+                $userId = $request->query('user_id');
+                $query->where('user_id', $userId);
+            }
+
+            if ($request->has('tag_id')) {
+                $tagId = $request->query('tag_id');
+                // $query->where('tag_id', $tagId);
+            }
+
+
+            $articles = $query->get();
+
             return new ArticleCollection($articles);
         } catch (\Exception $e) {
             Log::error("Error retrieving articles: {$e->getMessage()}");

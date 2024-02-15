@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
@@ -24,6 +25,12 @@ class CategoryController extends Controller
      *     path="/api/categories",
      *     tags={"Categories"},
      *     summary="List all categories",
+     *     @OA\Parameter(
+     *         name="search",
+     *         in="query",
+     *         description="Some word from the name of the category",
+     *         required=false,
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
@@ -38,11 +45,21 @@ class CategoryController extends Controller
      *     )
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $categories = Category::all();
-            // return $categories;
+            $query = Category::query();
+
+            if ($request->has('search')) {
+                $search = $request->query('search');
+                $query->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%");
+                });
+            }
+
+            $categories = $query->get();
+
             return new CategoryCollection($categories);
         } catch (\Exception $e) {
             Log::error("Error retrieving categories: {$e->getMessage()}");

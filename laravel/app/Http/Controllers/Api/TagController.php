@@ -7,6 +7,7 @@ use App\Http\Requests\TagRequest;
 use App\Http\Resources\TagCollection;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
@@ -23,6 +24,12 @@ class TagController extends Controller
      *     path="/api/tags",
      *     tags={"Tags"},
      *     summary="List all tags",
+     *     @OA\Parameter(
+     *         name="search",
+     *         in="query",
+     *         description="some word from the name of the tag",
+     *         required=false,
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
@@ -37,11 +44,18 @@ class TagController extends Controller
      *     )
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $tags = Tag::all();
-            // return $tags;
+            $query = Tag::query();
+
+            if ($request->has('search')) {
+                $search = $request->query('search');
+                $query->where('title', 'like', "%{$search}%");
+            }
+
+            $tags = $query->get();
+
             return new TagCollection($tags);
         } catch (\Exception $e) {
             Log::error("Error retrieving tags: {$e->getMessage()}");
