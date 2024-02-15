@@ -57,12 +57,8 @@ class ImageController extends Controller
      */
     public function upload(Request $request)
     {
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images'), $filename);
-            $domain = request()->root();
-            return response()->json(['location' => $domain . "/images/$filename"]);
-        }
+        $fileName=$request->file('file')->getClientOriginalName();
+        $path=$request->file('file')->storeAs('uploads', $fileName, 'public');
+        return response()->json(['location'=>"/storage/$path"]);
     }
 }
