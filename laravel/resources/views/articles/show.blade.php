@@ -6,14 +6,14 @@
 
     <div class="card mb-3">
         <div class="card-body">
-            Etiquetas:
+            Tags:
             @foreach ($article->tags as $tag)
                 <a href="#">{{ $tag->title }}</a>
             @endforeach
             <p class="card-text">{!! $article->content !!}</p>
         </div>
         <div class="card-footer text-body-secondary">
-            <h2 class="card-title">Comentarios</h2>
+            <h2 class="card-title">Comments</h2>
             @foreach ($article->comments as $comment)
                 <div class="card mb-3">
                     <div class="card-body">
@@ -26,13 +26,13 @@
 
             <form action="{{ url('comments/store') }}" method="post">
                 @csrf
-            <h3 class="card-title">Deja tu comentario</h3>
+            <h3 class="card-title">leave your comment</h3>
 
                 <div class="mt-1">
                     <textarea id="textArea" name="content" class="form-control"></textarea>
                 </div>
                 <input type="hidden" name="article_id" value="{{$article->id}}">
-                <input type="submit" name="submit" class="btn btn-primary my-2" value="Guardar">
+                <input type="submit" name="submit" class="btn btn-primary my-2" value="Submit">
             </form>
 
         </div>
