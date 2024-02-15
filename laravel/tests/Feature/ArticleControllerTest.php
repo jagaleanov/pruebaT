@@ -19,6 +19,7 @@ class ArticleControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it lists all articles.
      * This method tests if the API endpoint can successfully list all articles.
      */
@@ -53,6 +54,7 @@ class ArticleControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it creates an article.
      * This method tests if the API endpoint can successfully create a new article.
      */
@@ -100,6 +102,7 @@ class ArticleControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it shows an article.
      * This method tests if the API endpoint can successfully retrieve a single article by ID.
      */
@@ -142,6 +145,7 @@ class ArticleControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it updates an article.
      * This method tests if the API endpoint can successfully update an existing article.
      */
@@ -198,6 +202,7 @@ class ArticleControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it soft deletes an article.
      * This method tests if the API endpoint can successfully soft delete an article, making it inaccessible from normal queries.
      */
