@@ -17,6 +17,7 @@ class CategoryControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it lists all categories.
      * This method tests if the API endpoint can successfully list all categories.
      */
@@ -40,6 +41,7 @@ class CategoryControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it creates a category.
      * This method tests if the API endpoint can successfully create a new category.
      */
@@ -67,6 +69,7 @@ class CategoryControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it shows a category.
      * This method tests if the API endpoint can successfully retrieve a single category by ID.
      */
@@ -86,6 +89,7 @@ class CategoryControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it updates a category.
      * This method tests if the API endpoint can successfully update an existing category.
      */
@@ -120,6 +124,7 @@ class CategoryControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it soft deletes a category.
      * This method tests if the API endpoint can successfully soft delete a category, making it inaccessible from normal queries.
      */

@@ -18,6 +18,7 @@ class CommentControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it lists all comments.
      * This method tests if the API endpoint can successfully list all comments.
      */
@@ -46,6 +47,7 @@ class CommentControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it creates a comment.
      * This method tests if the API endpoint can successfully create a new comment associated with an article.
      */
@@ -79,6 +81,7 @@ class CommentControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it shows a comment.
      * This method tests if the API endpoint can successfully retrieve a single comment by ID.
      */
@@ -102,6 +105,7 @@ class CommentControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it updates a comment.
      * This method tests if the API endpoint can successfully update an existing comment.
      */
@@ -134,6 +138,7 @@ class CommentControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it soft deletes a comment.
      * This method tests if the API endpoint can successfully soft delete a comment, making it inaccessible from normal queries.
      */

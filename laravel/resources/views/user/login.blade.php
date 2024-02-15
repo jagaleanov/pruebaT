@@ -1,4 +1,3 @@
-<!-- resources/views/auth/login.blade.php -->
 @extends('layout.default')
 @section('content')
     <form method="POST" action="{{ route('login') }}">

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api;
+namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -12,6 +12,7 @@ class UserControllerTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     /**
+     * @test
      * Test it creates an tag.
      * This method tests if the API endpoint can successfully create a new user.
      */
@@ -38,6 +39,7 @@ class UserControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it login an user.
      * This method tests if the API endpoint can successfully login an user.
      */
@@ -60,6 +62,7 @@ class UserControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it logout an user.
      * This method tests if the API endpoint can successfully logout an user.
      */

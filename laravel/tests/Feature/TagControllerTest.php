@@ -17,6 +17,7 @@ class TagControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it lists all tags.
      * This method tests if the API endpoint can successfully list all tags.
      */
@@ -39,6 +40,7 @@ class TagControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it creates a tag.
      * This method tests if the API endpoint can successfully create a new tag.
      */
@@ -64,6 +66,7 @@ class TagControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it shows a tag.
      * This method tests if the API endpoint can successfully retrieve a single tag by ID.
      */
@@ -83,6 +86,7 @@ class TagControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it updates a tag.
      * This method tests if the API endpoint can successfully update an existing tag.
      */
@@ -114,6 +118,7 @@ class TagControllerTest extends TestCase
     }
 
     /**
+     * @test
      * Test it soft deletes a tag.
      * This method tests if the API endpoint can successfully soft delete a tag, making it inaccessible from normal queries.
      */

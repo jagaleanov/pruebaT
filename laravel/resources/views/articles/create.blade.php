@@ -1,6 +1,5 @@
 @extends('layout.default')
 @section('content')
-{{ url('/') }}
     <div class="my-2 d-flex justify-content-between align-items-center">
         <h1>Nuevo artículo</h1>
     </div>
