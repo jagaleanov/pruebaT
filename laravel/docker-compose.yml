@@ -1,44 +1,29 @@
-version: "3.8"
+version: '3.8'
 services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: laravelapp
     container_name: laravel_app
-    restart: unless-stopped
-    tty: true
     ports:
-      - "8000:8000"
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
+      - "80:80"
     volumes:
-      - ./:/var/www/html
-    networks:
-      - app-network
+      - .:/var/www/html
+    depends_on:
+      - db
 
   db:
     image: mariadb:latest
-    container_name: mariadb
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "3306:3306"
+    container_name: laravel_db
+    restart: always
     environment:
       MYSQL_DATABASE: laravel
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3306:3306"
     volumes:
-      - dbdata:/var/lib/mysql
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+      - db_data:/var/lib/mysql
 
 volumes:
-  dbdata:
-    driver: local
+  db_data:

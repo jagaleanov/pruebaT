@@ -1,34 +1,31 @@
-FROM php:8.3.2-fpm
+# Imagen base con PHP 8.3.2 y Apache
+FROM php:8.3.2-apache
 
-# Instalar dependencias del sistema
-RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    mariadb-client \
-    zip \
-    unzip \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql
+# Instalar extensiones de PHP necesarias para Laravel
+RUN docker-php-ext-install pdo pdo_mysql mysqli
 
-# Instalar Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Habilitar mod_rewrite para Apache
+RUN a2enmod rewrite
 
-# Permitir ejecución de plugins como superusuario
-ENV COMPOSER_ALLOW_SUPERUSER=1
+# Copiar el virtual host a Apache
+COPY ./prueba.test.conf /etc/apache2/sites-available/prueba.test.conf
 
-# Establecer directorio de trabajo
+# Habilitar el sitio de prueba.test
+RUN a2ensite prueba.test.conf
+
+# Deshabilitar el sitio predeterminado de Apache
+RUN a2dissite 000-default.conf
+
+# Establecer el directorio de trabajo
 WORKDIR /var/www/html
 
-# Copiar el código fuente de Laravel al contenedor
+# Copiar el proyecto Laravel al contenedor
 COPY . /var/www/html
 
 # Dar permiso al directorio de Laravel
+# Ajustar los permisos correctamente para storage y bootstrap/cache
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage
-
-# Instalar dependencias de Laravel
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
-
-# Exponer el puerto 9000
-EXPOSE 9000
+    && find /var/www/html/storage -type d -exec chmod 775 {} \; \
+    && find /var/www/html/bootstrap/cache -type d -exec chmod 775 {} \; \
+    && find /var/www/html/storage -type f -exec chmod 664 {} \; \
+    && find /var/www/html/bootstrap/cache -type f -exec chmod 664 {} \;
